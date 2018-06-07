@@ -17,14 +17,11 @@ class DepartureTableViewController: UITableViewController, ParserDelegate {
     var fromStop, toStop : Stop?
     var currentDate : Date?
     
-    var parser: Parser?
-    
     var updateCellContentsTimer: Timer?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        parser = Parser(delegate: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +62,10 @@ class DepartureTableViewController: UITableViewController, ParserDelegate {
         update()
     }
     
+    func getNextBus() -> Departure? {
+        return departures.count > 0 ? departures[getNext()] : nil
+    }
+    
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,7 +77,7 @@ class DepartureTableViewController: UITableViewController, ParserDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DepartureTableViewCell", for: indexPath) as? MealTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DepartureTableViewCell", for: indexPath) as? DepartureTableViewCell else {
             fatalError("Incompatible cell")
         }
         
@@ -84,10 +85,10 @@ class DepartureTableViewController: UITableViewController, ParserDelegate {
         
         cell.departure = departure
         cell.destinationLabel.text = departure.destination.getName()
-        cell.lineLabel.text = departure.line == 0 ? "-" : String(departure.line)
+        cell.lineLabel.text = departure.line == "" ? "-" : String(departure.line)
         cell.platformLabel.text = departure.platform == 0 ? "-" : String(departure.platform)
-        cell.durationLabel.text = departure.duration == 0 ? "-" : "\(departure.duration) min"
-        cell.fareLabel.text = departure.fare == 0 ? "-" : "¥\(departure.fare)"
+        cell.durationLabel.text = departure.duration == 0 ? "-" : String(format: NSLocalizedString("minutes", comment: ""), departure.duration)
+        cell.fareLabel.text = departure.fare == 0 ? "-" : String(format: NSLocalizedString("fare", comment: ""), departure.fare)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
@@ -106,41 +107,48 @@ class DepartureTableViewController: UITableViewController, ParserDelegate {
         if fromStop != nil && toStop != nil && currentDate != nil {
             refreshControl?.beginRefreshing()
             tableView.setContentOffset(CGPoint(x: 0, y: -(refreshControl?.frame.size.height)!), animated: true)
-            parser?.parse(from: fromStop!, to: toStop!, when: currentDate!)
+            TimeTableParser.getParser(from: fromStop!, to: toStop!, delegate: self)
+                .parse(from: fromStop!, to: toStop!, when: currentDate!)
         }
     }
     
     func success(departures: [Departure]) {
         self.departures = departures
-        refreshControl?.endRefreshing();
+        refreshControl?.endRefreshing()
         
-        tableView.reloadData();
-        
-        let indexPath = IndexPath(row: getNextBus(), section: 0)
+        tableView.reloadData()
+        scrollToNext()
+    }
+    
+    func scrollToNext() {
+        let indexPath = IndexPath(row: getNext(), section: 0)
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     func failure() {
+        self.departures = []
         refreshControl?.endRefreshing();
+        
+        tableView.reloadData()
     }
     
     
     func updateCells(timer: Timer) {
         let indexPathsArray = tableView.indexPathsForVisibleRows
         for indexPath in indexPathsArray! {
-            let cell = tableView.cellForRow(at: indexPath) as! MealTableViewCell
+            let cell = tableView.cellForRow(at: indexPath) as! DepartureTableViewCell
             updateCell(cell: cell)
         }
     }
     
-    func updateCell(cell: MealTableViewCell) {
+    func updateCell(cell: DepartureTableViewCell) {
         let seconds: Int = Calendar.current.dateComponents([.second], from: Date(), to: cell.departure.time).second!
         let minutes: Int = seconds / 60
         
         if minutes > 0 && minutes < 60 {
-            cell.remainingLabel.text = "\(minutes) min"
+            cell.remainingLabel.text = String(format: NSLocalizedString("minutes", comment: ""), minutes)
         } else if seconds > 0 && seconds < 60 {
-            cell.remainingLabel.text = "\(seconds) sec"
+            cell.remainingLabel.text = String(format: NSLocalizedString("seconds", comment: ""), seconds)
         } else {
             cell.remainingLabel.text = ""
         }
@@ -157,7 +165,7 @@ class DepartureTableViewController: UITableViewController, ParserDelegate {
     }
     
     
-    func getNextBus() -> Int {
+    func getNext() -> Int {
         for (i, d) in departures.enumerated() {
             if Int(d.time.timeIntervalSince(Date())) > 0 {
                 return i

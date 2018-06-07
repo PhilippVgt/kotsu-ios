@@ -12,12 +12,12 @@ class Departure {
     
     var destination: Stop
     var time: Date
-    var line: Int
+    var line: String
     var platform: Int
     var fare: Int
     var duration: Int
     
-    init(destination: Stop, line: Int, platform: Int, fare: Int, time: Date, duration: Int) {
+    init(destination: Stop, line: String, platform: Int, fare: Int, time: Date, duration: Int) {
         self.destination = destination
         self.line = line
         self.platform = platform

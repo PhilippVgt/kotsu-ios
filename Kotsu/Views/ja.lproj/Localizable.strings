@@ -7,3 +7,12 @@
 */
 "weekday" = "平日";
 "weekend" = "週末";
+
+"location_title" = "場所";
+"location_text" = "どこから出発しますか？";
+"destination_title" = "行先";
+"destination_text" = "どこへ行きますか？";
+
+"minutes" = "%d分";
+"seconds" = "%d秒";
+"fare" = "%d円";

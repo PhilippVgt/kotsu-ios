@@ -11,12 +11,7 @@ import WebKit
 import SwiftSoup
 
 
-protocol ParserDelegate {
-    func success(departures: [Departure])
-    func failure()
-}
-
-class NaraKotsuParser : NSObject, WKNavigationDelegate {
+class NaraKotsuParser : TimeTableParser, WKNavigationDelegate {
     
     var webView: WKWebView!
     
@@ -26,10 +21,8 @@ class NaraKotsuParser : NSObject, WKNavigationDelegate {
     var delegate: ParserDelegate?
     
     
-    init(delegate: ParserDelegate?) {
+    override init() {
         super.init()
-        
-        self.delegate = delegate
         
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
@@ -37,7 +30,13 @@ class NaraKotsuParser : NSObject, WKNavigationDelegate {
     }
     
     
-    func parse(from: Stop, to: Stop, when: Date) {
+    override func setDelegate(delegate: ParserDelegate?) {
+        self.delegate = delegate
+    }
+    
+    override func parse(from: Stop, to: Stop, when: Date) {
+        webView.stopLoading()
+        
         self.destination = to
         self.selectedDate = when
         
@@ -45,6 +44,7 @@ class NaraKotsuParser : NSObject, WKNavigationDelegate {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let url = "https://navi.narakotsu.co.jp/result_timetable/?stop1=\(from.id)&stop2=\(to.id)&date=\(dateFormatter.string(from: when))"
         print("Loading \(url)")
+        
         webView.load(URLRequest(url: URL(string: url)!))
     }
     
@@ -91,7 +91,7 @@ class NaraKotsuParser : NSObject, WKNavigationDelegate {
                 let time: Date = Calendar.current.date(bySettingHour: hour, minute: min, second: 0, of: date)!
                 
                 let column: Int = try minute.parent()!.elementSiblingIndex()
-                let line: Int = try Int(destinations.get(column).getElementsByClass("indicator_no").first()!.text()) ?? 0
+                let line: String = try destinations.get(column).getElementsByClass("indicator_no").first()!.text()
                 let platform: Int = try Int(platforms.get(column).text().replacingOccurrences(of: "[^\\d.]", with: "", options: .regularExpression)) ?? 0
                 let duration: Int = try Int(durations.get(column).text().replacingOccurrences(of: "分", with: "")) ?? 0
                 

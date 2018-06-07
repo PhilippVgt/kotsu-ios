@@ -1,0 +1,31 @@
+{
+  "Mac" : [
+    {
+      "name" : "SwiftSoup",
+      "hash" : "a870c6a2a6c63354689ddd7ffae8e979bb1786b3061d3e9ede70c2bee1060263"
+    }
+  ],
+  "watchOS" : [
+    {
+      "name" : "SwiftSoup",
+      "hash" : "28a1088491d877523bd1c338f9155385d97ac3799d4e53845991482c3f72d763"
+    }
+  ],
+  "tvOS" : [
+    {
+      "name" : "SwiftSoup",
+      "hash" : "b78ecd4e3e55cbe0929615a50e49720021d591107e66ea711ffe6dc729c230f9"
+    }
+  ],
+  "commitish" : "1.7.1",
+  "iOS" : [
+    {
+      "name" : "SwiftSoup",
+      "hash" : "fe6981d1e57dace0a5b560d9065bd0f47bc43ce7c702cbb37d1969bbfd9505e1"
+    },
+    {
+      "name" : "SwiftSoup",
+      "hash" : "fe6981d1e57dace0a5b560d9065bd0f47bc43ce7c702cbb37d1969bbfd9505e1"
+    }
+  ]
+}

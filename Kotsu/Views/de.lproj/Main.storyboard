@@ -85,7 +85,7 @@
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                                         <inset key="titleEdgeInsets" minX="-26" minY="24" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-30" maxY="0.0"/>
-                                        <state key="normal" title="Today" image="Today">
+                                        <state key="normal" title="Heute" image="Today">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
@@ -101,9 +101,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUN-AA-3dQ">
                                         <rect key="frame" x="125" y="0.0" width="125" height="56"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
-                                        <inset key="titleEdgeInsets" minX="-28" minY="24" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-50" maxY="0.0"/>
-                                        <state key="normal" title="Tomorrow" image="Tomorrow">
+                                        <inset key="titleEdgeInsets" minX="-24" minY="24" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-42" maxY="0.0"/>
+                                        <state key="normal" title="Morgen" image="Tomorrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
@@ -119,9 +119,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URR-7g-8df">
                                         <rect key="frame" x="250" y="0.0" width="125" height="56"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
-                                        <inset key="titleEdgeInsets" minX="-29" minY="24" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-47" maxY="0.0"/>
-                                        <state key="normal" title="Weekend" image="Other">
+                                        <inset key="titleEdgeInsets" minX="-27" minY="24" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-70" maxY="0.0"/>
+                                        <state key="normal" title="Wochenende" image="Other">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">

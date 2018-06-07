@@ -7,3 +7,12 @@
 */
 "weekday" = "Weekday";
 "weekend" = "Weekend";
+
+"location_title" = "Location";
+"location_text" = "Where do you depart from?";
+"destination_title" = "Destination";
+"destination_text" = "Where are you going?";
+
+"minutes" = "%d min";
+"seconds" = "%d sec";
+"fare" = "¥%d";

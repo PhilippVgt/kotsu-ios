@@ -7,11 +7,9 @@
 //
 
 import UIKit
-import WebKit
-import SwiftSoup
 
 
-class ViewController: UIViewController, WKNavigationDelegate {
+class ViewController: UIViewController {
     
     //MARK: Properties
     @IBOutlet weak var fromButton: UIButton!
@@ -19,48 +17,57 @@ class ViewController: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var todayButton: UIButton!
     @IBOutlet weak var tomorrowButton: UIButton!
     @IBOutlet weak var otherButton: UIButton!
+    @IBOutlet weak var nextBusLabel: UILabel!
+    @IBOutlet weak var nextBusHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var nextBusCaption: UILabel!
     
-    @IBOutlet weak var listView: UIView!
-    
-    var webView: WKWebView!
     
     var currentDate: Date = Date()
     var fromStop: Stop = Stop.getStop(id: 560)!
     var toStop: Stop = Stop.getStop(id: 2610)!
     
-    var departures: [Departure] = []
     var departureViewController: DepartureTableViewController?
     
+    var updateNextBusTimer: Timer?
     
-    override func loadView() {
-        super.loadView()
-        let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.navigationDelegate = self
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fromButton.layer.masksToBounds = true
-        fromButton.layer.cornerRadius = 8
+        fromButton.layer.cornerRadius = fromButton.frame.size.height / 2
         toButton.layer.masksToBounds = true
-        toButton.layer.cornerRadius = 8
+        toButton.layer.cornerRadius = toButton.frame.size.height / 2
         
         todayButton.isSelected = true
         let weekday = Calendar(identifier: .gregorian).component(.weekday, from: Date())
         if weekday == 1 || weekday == 7 {
-            otherButton.setTitle("Weekdays", for: .normal)
+            otherButton.setTitle(NSLocalizedString("weekday", comment: ""), for: .normal)
         } else {
-            otherButton.setTitle("Weekend", for: .normal)
+            otherButton.setTitle(NSLocalizedString("weekend", comment: ""), for: .normal)
         }
         
-        updateTimeTable()
+        fromButton.setTitle(fromStop.getName(), for: .normal)
+        toButton.setTitle(toStop.getName(), for: .normal)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if updateNextBusTimer == nil {
+            updateNextBusTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: updateNextBus)
+        }
         
+        if currentDate < Date() {
+            todaySelected(todayButton)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if updateNextBusTimer != nil {
+            updateNextBusTimer?.invalidate()
+            updateNextBusTimer = nil
+        }
     }
     
     
@@ -69,19 +76,21 @@ class ViewController: UIViewController, WKNavigationDelegate {
         let from: Stop = self.fromStop
         fromStop = toStop
         toStop = from
-        updateTimeTable()
         
         fromButton.setTitle(fromStop.getName(), for: .normal)
         toButton.setTitle(toStop.getName(), for: .normal)
+        
+        departureViewController?.set(from: self.fromStop, to: self.toStop)
     }
     
     @IBAction func selectFrom(_ sender: UIButton) {
-        let actionSheet = UIAlertController(title: "Location", message: "Where do you depart from?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let actionSheet = UIAlertController(title: NSLocalizedString("location_title", comment: ""), message: NSLocalizedString("location_text", comment: ""), preferredStyle: UIAlertControllerStyle.actionSheet)
         for stop in Stop.getAll() {
             actionSheet.addAction(UIAlertAction(title: stop.getName(), style: UIAlertActionStyle.default) { (action) in
                 self.fromStop = stop
                 self.fromButton.setTitle(self.fromStop.getName(), for: .normal)
-                self.updateTimeTable()
+                
+                self.departureViewController?.set(from: self.fromStop, to: self.toStop)
             })
         }
         actionSheet.popoverPresentationController?.sourceView = self.fromButton
@@ -90,12 +99,13 @@ class ViewController: UIViewController, WKNavigationDelegate {
     }
     
     @IBAction func selectTo(_ sender: UIButton) {
-        let actionSheet = UIAlertController(title: "Destination", message: "Where are you going?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let actionSheet = UIAlertController(title: NSLocalizedString("destination_title", comment: ""), message: NSLocalizedString("destination_text", comment: ""), preferredStyle: UIAlertControllerStyle.actionSheet)
         for stop in Stop.getAll() {
             actionSheet.addAction(UIAlertAction(title: stop.getName(), style: UIAlertActionStyle.default) { (action) in
                 self.toStop = stop
                 self.toButton.setTitle(self.toStop.getName(), for: .normal)
-                self.updateTimeTable()
+                
+                self.departureViewController?.set(from: self.fromStop, to: self.toStop)
             })
         }
         actionSheet.popoverPresentationController?.sourceView = self.toButton
@@ -108,116 +118,85 @@ class ViewController: UIViewController, WKNavigationDelegate {
         todayButton.isSelected = true
         tomorrowButton.isSelected = false
         otherButton.isSelected = false
-        currentDate = Date()
-        updateTimeTable()
+        currentDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+        
+        departureViewController?.set(when: currentDate)
     }
     
     @IBAction func tomorrowSelected(_ sender: UIButton) {
         todayButton.isSelected = false
         tomorrowButton.isSelected = true
         otherButton.isSelected = false
-        currentDate = Date()
+        currentDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
         currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!
-        updateTimeTable()
+        
+        departureViewController?.set(when: currentDate)
     }
     
     @IBAction func otherSelected(_ sender: UIButton) {
         todayButton.isSelected = false
         tomorrowButton.isSelected = false
         otherButton.isSelected = true
-        currentDate = Date()
+        currentDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
         let weekday = Calendar(identifier: .gregorian).component(.weekday, from: currentDate)
         if weekday == 1 || weekday == 7 {
             currentDate = Calendar.current.date(bySetting: .weekday, value: 4, of: currentDate)!
         } else {
             currentDate = Calendar.current.date(bySetting: .weekday, value: 1, of: currentDate)!
         }
-        updateTimeTable()
+        
+        departureViewController?.set(when: currentDate)
+    }
+    
+    
+    func updateNextBus(timer: Timer) {
+        let next: Departure? = (departureViewController?.getNextBus())
+        
+        if next != nil {
+            let seconds: Int = Calendar.current.dateComponents([.second], from: Date(), to: next!.time).second!
+            if seconds > 0 && seconds < 60*60 {
+                let components = Calendar.current.dateComponents([.minute, .second], from: Date(), to: next!.time)
+                nextBusLabel.text = String(format: "%0.2d:%0.2d", components.minute!, components.second!)
+                if self.nextBusHeightConstraint.constant < 46 {
+                    UIView.animate(withDuration: Double(0.5), animations: {
+                        self.nextBusHeightConstraint.constant = 46
+                        self.nextBusCaption.alpha = 1
+                        self.nextBusLabel.alpha = 1
+                        self.view.layoutIfNeeded()
+                    })
+                }
+            } else {
+                if self.nextBusHeightConstraint.constant > 0 {
+                    UIView.animate(withDuration: Double(0.5), animations: {
+                        self.nextBusHeightConstraint.constant = 0
+                        self.nextBusCaption.alpha = 0
+                        self.nextBusLabel.alpha = 0
+                        self.view.layoutIfNeeded()
+                    })
+                }
+            }
+        } else {
+            if self.nextBusHeightConstraint.constant > 0 {
+                UIView.animate(withDuration: Double(0.5), animations: {
+                    self.nextBusHeightConstraint.constant = 0
+                    self.nextBusCaption.alpha = 0
+                    self.nextBusLabel.alpha = 0
+                    self.view.layoutIfNeeded()
+                })
+            }
+        }
+    }
+    @IBAction func scrollToNextBus(_ sender: UITapGestureRecognizer) {
+        departureViewController?.scrollToNext()
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "departureTableSegue" {
+        if segue.identifier == "DepartureTableViewSegue" {
             departureViewController = segue.destination as? DepartureTableViewController
+            
+            departureViewController?.set(from: fromStop, to: toStop, when: currentDate)
         }
-    }
-    
-    
-    private func updateTimeTable() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let url = "https://navi.narakotsu.co.jp/result_timetable/?stop1=\(fromStop.id)&stop2=\(toStop.id)&date=\(dateFormatter.string(from: currentDate))"
-        print("Loading \(url)")
-        webView.load(URLRequest(url: URL(string: url)!))
-    }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            webView.evaluateJavaScript("document.getElementsByClassName('timetable')[0].outerHTML;",
-                                       completionHandler: { (result, error) in
-                                        if error == nil {
-                                            var html = result as! String
-                                            html = html.replacingOccurrences(of: "\\u003C", with: "<")
-                                            html = html.replacingOccurrences(of: "\\t", with: "")
-                                            html = html.replacingOccurrences(of: "\\n", with: "")
-                                            html = html.replacingOccurrences(of: "\\\"", with: "\"")
-                                            self.parse(html: html)
-                                        }
-            })
-            
-            
-        })
-    }
-    
-    func parse(html: String) {
-        let doc: Document = try! SwiftSoup.parse(html)
-        let table: Element = try! doc.getElementsByTag("tbody").first()!
-        
-        let destinations: Elements = try! table.getElementsByClass("destination").first()!.children()
-        let platforms: Elements = try! table.getElementsByClass("platform").first()!.children()
-        let durations: Elements = try! table.getElementsByClass("required").first()!.children()
-        let fares: Elements = try! table.getElementsByClass("fare").first()!.children()
-        
-        let minutes: Elements = try! doc.select(".minutes")
-        
-        var departures: [Departure] = []
-        for minute: Element in minutes {
-            let min: Int = try! Int(minute.text())!
-            var hour: Int = try! Int(minute.parent()!.parent()!.getElementsByClass("timezone_link").text())!
-            var date: Date = Date()
-            if hour > 23 {
-                date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
-                hour = 0
-            }
-            let time: Date = Calendar.current.date(bySettingHour: hour, minute: min, second: 0, of: date)!
-            
-            let column: Int = try! minute.parent()!.elementSiblingIndex()
-            let line: Int = try! Int(destinations.get(column).getElementsByClass("indicator_no").first()!.text())!
-            let platform: Int = try! Int(platforms.get(column).text().replacingOccurrences(of: "[^\\d.]", with: "", options: .regularExpression))!
-            let duration: Int = try! Int(durations.get(column).text().replacingOccurrences(of: "分", with: ""))!
-            
-            var destination: Stop? = Stop.getStop(jp: try! destinations.get(column).child(1).text())
-            destination = destination != nil ? destination : toStop
-            destination = destination != nil ? destination : Stop(id: 0, nameEN: "-", nameJP: "-")
-            
-            var fare = 0
-            if(try! fares.get(column).getElementsByTag("a").size() > 0) {
-                fare = try! Int(fares.get(column).getElementsByTag("a").first()!.text().replacingOccurrences(of: "円", with: ""))!
-            } else {
-                fare = try! Int(fares.get(column).text().replacingOccurrences(of: "円", with: ""))!
-            }
-            
-            departures.append(Departure(destination: destination!, line: line, platform: platform, fare: fare, time: time, duration: duration))
-        }
-        
-        if departures.count > 0 {
-            self.departures = departures.sorted(by: {$0.time.compare($1.time) == .orderedAscending})
-            updateList()
-        }
-    }
-    
-    func updateList() {
-        departureViewController?.setDepartures(departures: departures)
     }
     
 }

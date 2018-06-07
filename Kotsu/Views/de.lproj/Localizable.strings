@@ -5,14 +5,14 @@
   Created by Philipp Voigt on 2018/06/05.
   Copyright © 2018 Ubiquitous Computing Systems Laboratory. All rights reserved.
 */
-"weekday" = "Weekday";
-"weekend" = "Weekend";
+"weekday" = "Wochentags";
+"weekend" = "Wochenende";
 
-"location_title" = "Location";
-"location_text" = "Where do you depart from?";
-"destination_title" = "Destination";
-"destination_text" = "Where are you going?";
+"location_title" = "Standort";
+"location_text" = "Wo möchtest du abfahren?";
+"destination_title" = "Ziel";
+"destination_text" = "Wohin möchtest du?";
 
 "minutes" = "%d min";
-"seconds" = "%d sec";
-"fare" = "¥%d";
+"seconds" = "%d sek";
+"fare" = "%d¥";

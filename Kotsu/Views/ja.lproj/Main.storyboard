@@ -83,9 +83,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zT7-tT-gjj">
                                         <rect key="frame" x="0.0" y="0.0" width="125" height="56"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
-                                        <inset key="titleEdgeInsets" minX="-26" minY="24" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-30" maxY="0.0"/>
-                                        <state key="normal" title="Today" image="Today">
+                                        <inset key="titleEdgeInsets" minX="-25" minY="24" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-21" maxY="0.0"/>
+                                        <state key="normal" title="今日" image="Today">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
@@ -101,9 +101,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUN-AA-3dQ">
                                         <rect key="frame" x="125" y="0.0" width="125" height="56"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
-                                        <inset key="titleEdgeInsets" minX="-28" minY="24" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-50" maxY="0.0"/>
-                                        <state key="normal" title="Tomorrow" image="Tomorrow">
+                                        <inset key="titleEdgeInsets" minX="-23" minY="24" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-22" maxY="0.0"/>
+                                        <state key="normal" title="明日" image="Tomorrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
@@ -119,9 +119,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URR-7g-8df">
                                         <rect key="frame" x="250" y="0.0" width="125" height="56"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
-                                        <inset key="titleEdgeInsets" minX="-29" minY="24" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-47" maxY="0.0"/>
-                                        <state key="normal" title="Weekend" image="Other">
+                                        <inset key="titleEdgeInsets" minX="-24" minY="24" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-23" maxY="0.0"/>
+                                        <state key="normal" title="週末" image="Other">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
@@ -142,7 +142,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xef-As-VFt" userLabel="Next Bus">
                                 <rect key="frame" x="0.0" y="611" width="375" height="0.0"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Next Bus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="On4-m3-GWn">
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="次のバス" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="On4-m3-GWn">
                                         <rect key="frame" x="15" y="-10" width="329" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
