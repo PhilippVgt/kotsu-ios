@@ -1,0 +1,9 @@
+/* 
+  Strings.strings
+  Kotsu
+
+  Created by Philipp Voigt on 2018/06/05.
+  Copyright © 2018 Ubiquitous Computing Systems Laboratory. All rights reserved.
+*/
+"weekday" = "Weekday";
+"weekend" = "Weekend";
