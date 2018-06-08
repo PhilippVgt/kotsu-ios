@@ -1,0 +1,51 @@
+App Name:     Kōtsū                       Kōtsū
+Subtitle:     NAIST Bus Schedule          NAISTのバスの時刻表
+Icon:         icon.png                    icon.png
+Categories:   Navigation & Travel
+Screenshots:  screenshot1.png - screenshot4.png
+App Preview:  app_preview.mov
+
+
+Keywords (en):
+naist,nara,sentan,intitute,university,bus,schedule,kotsu,ikoma,departure,kansai,airport,time
+
+Keywords (ja):
+ナイスト、奈良、先端、研究、大学、バス、スケジュール、生駒、交通、出発、関西、空港、時間
+
+
+Description (en):
+Get access the latest bus departure times for the most frequently used bus routes from and to Nara Institute of Science and Technology in English and Japanese. The data is taken straight from the Nara Kotsu Website to make sure it is always correct, even on weekends and public holidays.
+
+The app supports buses between:
+- NAIST
+- Gakken-Kita-Ikoma Station
+- Gakuemmae Station
+- Gakken-Nara-Tomigaoka Station
+- Takanohara Station
+- Kansai Airport
+- ...
+
+You can view all departures between point A and point B for the current and the next day, for the next weekend and weekday. Departures within the next hour are highlighted with a countdown. You always have up-to-date information on the bus line number, departure platform, trip duration, and fare. A convenient countdown is displayed for the next bus if it leaves within the next hour.
+
+Description (ja):
+奈良先端科学技術大学院大学との間で、最も頻繁に使用されるバス路線の最新のバス出発時間を英語と日本語で入手する。 データは奈良交通ウェブサイトから直接取ってきて、週末や祝祭日であっても常に正しいことを確認してください。
+
+このアプリは以下のバスをサポートしています：
+* NAIST
+* 学研北生駒駅
+* 学園前駅
+* 学研奈良登美ヶ丘駅
+* 高の原駅
+* 関西空港
+* ...
+
+次の週末と曜日の現在および翌日のポイントAとポイントB間のすべての出発時刻を表示できます。 次の時間内の出発は、カウントダウンで強調表示されます。 あなたは常に、バスライン番号、出発プラットフォーム、旅行期間、運賃に関する最新の情報を持っています。 次の時間内に出ると、次のバスのための便利なカウントダウンが表示されます。
+
+
+What's new (en):
+Find the departure times of the Kansai Airport Limousine Bus from all bus stops along the route.
+Bugfixes and performance improvements.
+
+What's new (ja):
+関西空港リムジンバスの出発時間は、ルートに沿ったすべてのバス停から検索してください。
+バグ修正とパフォーマンスの改善。
