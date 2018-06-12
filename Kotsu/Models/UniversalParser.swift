@@ -56,7 +56,7 @@ class UniversalParser : TimeTableParser {
                     line = line.replacingOccurrences(of: "関", with: "KATE")
                 }
                 
-                let departure = Departure(destination: destination, line: item.line, platform: item.platform, fare: item.fare, time: time, duration: item.duration)
+                let departure = Departure(destination: destination, line: line, platform: item.platform, fare: item.fare, time: time, duration: item.duration)
                 departures.append(departure)
             }
             

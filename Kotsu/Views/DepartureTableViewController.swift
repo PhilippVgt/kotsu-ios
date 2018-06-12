@@ -136,9 +136,12 @@ class DepartureTableViewController: UITableViewController, ParserDelegate {
     
     func failure() {
         self.departures = []
-        refreshControl?.endRefreshing();
-        
-        tableView.reloadData()
+        DispatchQueue.main.sync {
+            tableView.reloadData()
+            if refreshControl?.isRefreshing == true {
+                refreshControl?.endRefreshing();
+            }
+        }
     }
     
     
