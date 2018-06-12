@@ -9,10 +9,7 @@
 /* Begin PBXBuildFile section */
 		BB0094A620CF600200FEE5F2 /* UniversalParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0094A520CF600200FEE5F2 /* UniversalParser.swift */; };
 		BB15B26B20C51DD2005522F8 /* TimeTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB15B26A20C51DD2005522F8 /* TimeTableParser.swift */; };
-		BB15B26D20C51E66005522F8 /* KansaiAirportParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB15B26C20C51E66005522F8 /* KansaiAirportParser.swift */; };
 		BB15B28320C616DB005522F8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB15B28120C616DB005522F8 /* Localizable.strings */; };
-		BBA8B28420BE9AA3005C3307 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA8B28320BE9AA2005C3307 /* SwiftSoup.framework */; };
-		BBA8B28D20C00D54005C3307 /* NaraKotsuParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA8B28C20C00D54005C3307 /* NaraKotsuParser.swift */; };
 		BBA8B28F20C15A78005C3307 /* DepartureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA8B28E20C15A78005C3307 /* DepartureTableViewCell.swift */; };
 		BBA8B29120C15BE4005C3307 /* DepartureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA8B29020C15BE4005C3307 /* DepartureTableViewController.swift */; };
 		BBDA71D620BD126100849600 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDA71D520BD126100849600 /* AppDelegate.swift */; };
@@ -27,14 +24,12 @@
 /* Begin PBXFileReference section */
 		BB0094A520CF600200FEE5F2 /* UniversalParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalParser.swift; sourceTree = "<group>"; };
 		BB15B26A20C51DD2005522F8 /* TimeTableParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableParser.swift; sourceTree = "<group>"; };
-		BB15B26C20C51E66005522F8 /* KansaiAirportParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KansaiAirportParser.swift; sourceTree = "<group>"; };
 		BB15B27B20C6125A005522F8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB15B28220C616DB005522F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB15B28420C616E4005522F8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB15B28520C8B8E8005522F8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB15B28620C8B8E8005522F8 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BBA8B28320BE9AA2005C3307 /* SwiftSoup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSoup.framework; path = Carthage/Build/iOS/SwiftSoup.framework; sourceTree = "<group>"; };
-		BBA8B28C20C00D54005C3307 /* NaraKotsuParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaraKotsuParser.swift; sourceTree = "<group>"; };
 		BBA8B28E20C15A78005C3307 /* DepartureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureTableViewCell.swift; sourceTree = "<group>"; };
 		BBA8B29020C15BE4005C3307 /* DepartureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureTableViewController.swift; sourceTree = "<group>"; };
 		BBDA71D220BD126100849600 /* Kotsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kotsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,7 +48,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBA8B28420BE9AA3005C3307 /* SwiftSoup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,8 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				BBE1359120BE19BE005E8BA0 /* Containers */,
-				BBA8B28C20C00D54005C3307 /* NaraKotsuParser.swift */,
-				BB15B26C20C51E66005522F8 /* KansaiAirportParser.swift */,
 				BB15B26A20C51DD2005522F8 /* TimeTableParser.swift */,
 				BB0094A520CF600200FEE5F2 /* UniversalParser.swift */,
 			);
@@ -141,7 +133,6 @@
 				BBDA71CE20BD126100849600 /* Sources */,
 				BBDA71CF20BD126100849600 /* Frameworks */,
 				BBDA71D020BD126100849600 /* Resources */,
-				BBA8B28520BE9AC0005C3307 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -201,24 +192,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		BBA8B28520BE9AC0005C3307 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftSoup.framework",
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftSoup.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		BBDA71CE20BD126100849600 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -231,9 +204,7 @@
 				BBA8B28F20C15A78005C3307 /* DepartureTableViewCell.swift in Sources */,
 				BB15B26B20C51DD2005522F8 /* TimeTableParser.swift in Sources */,
 				BBE1359020BE19B6005E8BA0 /* Departure.swift in Sources */,
-				BB15B26D20C51E66005522F8 /* KansaiAirportParser.swift in Sources */,
 				BBA8B29120C15BE4005C3307 /* DepartureTableViewController.swift in Sources */,
-				BBA8B28D20C00D54005C3307 /* NaraKotsuParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +294,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -378,7 +349,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

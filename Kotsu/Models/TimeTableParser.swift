@@ -18,19 +18,9 @@ class TimeTableParser : NSObject {
     func setDelegate(delegate: ParserDelegate?) {}
     func parse(from: Stop, to: Stop, when: Date) {}
     
-    private static var kansaiAirportParser : TimeTableParser = KansaiAirportParser();
-    private static var naraKotsuParser : TimeTableParser = NaraKotsuParser();
     private static var universalParser : TimeTableParser = UniversalParser();
     
     public static func getParser(from: Stop, to: Stop, delegate: ParserDelegate) -> TimeTableParser {
-        /*if(from.id == 100001 || from.id == 100002 || to.id == 100001 || to.id == 100002) {
-            kansaiAirportParser.setDelegate(delegate: delegate);
-            return kansaiAirportParser;
-        } else {
-            naraKotsuParser.setDelegate(delegate: delegate);
-            return naraKotsuParser;
-        }*/
-        
         universalParser.setDelegate(delegate: delegate);
         return universalParser;
     }
