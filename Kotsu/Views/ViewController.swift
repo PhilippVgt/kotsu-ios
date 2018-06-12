@@ -93,6 +93,7 @@ class ViewController: UIViewController {
                 self.departureViewController?.set(from: self.fromStop, to: self.toStop)
             })
         }
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel))
         actionSheet.popoverPresentationController?.sourceView = self.fromButton
         actionSheet.popoverPresentationController?.sourceRect = self.fromButton.bounds
         self.present(actionSheet, animated: true, completion: nil)
@@ -108,6 +109,7 @@ class ViewController: UIViewController {
                 self.departureViewController?.set(from: self.fromStop, to: self.toStop)
             })
         }
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel))
         actionSheet.popoverPresentationController?.sourceView = self.toButton
         actionSheet.popoverPresentationController?.sourceRect = self.toButton.bounds
         self.present(actionSheet, animated: true, completion: nil)

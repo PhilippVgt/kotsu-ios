@@ -105,8 +105,11 @@ class DepartureTableViewController: UITableViewController, ParserDelegate {
     
     func update() {
         if fromStop != nil && toStop != nil && currentDate != nil {
-            refreshControl?.beginRefreshing()
+            if departures.count > 0 {
+                tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+            }
             tableView.setContentOffset(CGPoint(x: 0, y: -(refreshControl?.frame.size.height)!), animated: true)
+            refreshControl?.beginRefreshing()
             TimeTableParser.getParser(from: fromStop!, to: toStop!, delegate: self)
                 .parse(from: fromStop!, to: toStop!, when: currentDate!)
         }
@@ -114,10 +117,16 @@ class DepartureTableViewController: UITableViewController, ParserDelegate {
     
     func success(departures: [Departure]) {
         self.departures = departures
-        refreshControl?.endRefreshing()
+        DispatchQueue.main.sync {
+            tableView.reloadData()
+            if refreshControl?.isRefreshing == true {
+                refreshControl?.endRefreshing()
+            }
+        }
         
-        tableView.reloadData()
-        scrollToNext()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.scrollToNext()
+        })
     }
     
     func scrollToNext() {

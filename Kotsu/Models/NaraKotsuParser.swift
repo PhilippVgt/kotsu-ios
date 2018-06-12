@@ -42,7 +42,7 @@ class NaraKotsuParser : TimeTableParser, WKNavigationDelegate {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let url = "https://navi.narakotsu.co.jp/result_timetable/?stop1=\(from.id)&stop2=\(to.id)&date=\(dateFormatter.string(from: when))"
+        let url = "http://navi.narakotsu.co.jp/result_timetable/?stop1=\(from.id)&stop2=\(to.id)&date=\(dateFormatter.string(from: when))"
         print("Loading \(url)")
         
         webView.load(URLRequest(url: URL(string: url)!))

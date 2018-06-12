@@ -16,3 +16,5 @@
 "minutes" = "%d分";
 "seconds" = "%d秒";
 "fare" = "%d円";
+
+"cancel" = "キャンセル";

@@ -16,3 +16,5 @@
 "minutes" = "%d min";
 "seconds" = "%d sec";
 "fare" = "¥%d";
+
+"cancel" = "Cancel";

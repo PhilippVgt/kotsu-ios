@@ -86,7 +86,7 @@
                                         <inset key="titleEdgeInsets" minX="-26" minY="24" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-30" maxY="0.0"/>
                                         <state key="normal" title="Heute" image="Today">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
                                             <color key="titleColor" red="0.25882352939999997" green="0.33725490200000002" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
@@ -104,7 +104,7 @@
                                         <inset key="titleEdgeInsets" minX="-24" minY="24" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-42" maxY="0.0"/>
                                         <state key="normal" title="Morgen" image="Tomorrow">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
                                             <color key="titleColor" red="0.25882352939999997" green="0.33725490200000002" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
@@ -122,7 +122,7 @@
                                         <inset key="titleEdgeInsets" minX="-27" minY="24" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="-14" maxX="-70" maxY="0.0"/>
                                         <state key="normal" title="Wochenende" image="Other">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
                                             <color key="titleColor" red="0.25882352939999997" green="0.33725490200000002" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
