@@ -10,6 +10,7 @@
 		BB0094A620CF600200FEE5F2 /* UniversalParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0094A520CF600200FEE5F2 /* UniversalParser.swift */; };
 		BB15B26B20C51DD2005522F8 /* TimeTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB15B26A20C51DD2005522F8 /* TimeTableParser.swift */; };
 		BB15B28320C616DB005522F8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB15B28120C616DB005522F8 /* Localizable.strings */; };
+		BB8F9C1C20DCA21300958050 /* StopLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F9C1B20DCA21300958050 /* StopLoader.swift */; };
 		BBA8B28F20C15A78005C3307 /* DepartureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA8B28E20C15A78005C3307 /* DepartureTableViewCell.swift */; };
 		BBA8B29120C15BE4005C3307 /* DepartureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA8B29020C15BE4005C3307 /* DepartureTableViewController.swift */; };
 		BBDA71D620BD126100849600 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDA71D520BD126100849600 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 		BB15B28420C616E4005522F8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB15B28520C8B8E8005522F8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB15B28620C8B8E8005522F8 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BB8F9C1B20DCA21300958050 /* StopLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLoader.swift; sourceTree = "<group>"; };
 		BBA8B28320BE9AA2005C3307 /* SwiftSoup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSoup.framework; path = Carthage/Build/iOS/SwiftSoup.framework; sourceTree = "<group>"; };
 		BBA8B28E20C15A78005C3307 /* DepartureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureTableViewCell.swift; sourceTree = "<group>"; };
 		BBA8B29020C15BE4005C3307 /* DepartureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureTableViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				BBE1359120BE19BE005E8BA0 /* Containers */,
 				BB15B26A20C51DD2005522F8 /* TimeTableParser.swift */,
 				BB0094A520CF600200FEE5F2 /* UniversalParser.swift */,
+				BB8F9C1B20DCA21300958050 /* StopLoader.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				BBA8B28F20C15A78005C3307 /* DepartureTableViewCell.swift in Sources */,
 				BB15B26B20C51DD2005522F8 /* TimeTableParser.swift in Sources */,
 				BBE1359020BE19B6005E8BA0 /* Departure.swift in Sources */,
+				BB8F9C1C20DCA21300958050 /* StopLoader.swift in Sources */,
 				BBA8B29120C15BE4005C3307 /* DepartureTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

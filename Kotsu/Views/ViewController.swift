@@ -23,8 +23,8 @@ class ViewController: UIViewController {
     
     
     var currentDate: Date = Date()
-    var fromStop: Stop = Stop.getStop(id: 560)!
-    var toStop: Stop = Stop.getStop(id: 2610)!
+    var fromStop: Stop = StopLoader.instance.getStop(id: 560)!
+    var toStop: Stop = StopLoader.instance.getStop(id: 2610)!
     
     var departureViewController: DepartureTableViewController?
     
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
     
     @IBAction func selectFrom(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: NSLocalizedString("location_title", comment: ""), message: NSLocalizedString("location_text", comment: ""), preferredStyle: UIAlertControllerStyle.actionSheet)
-        for stop in Stop.getAll() {
+        for stop in StopLoader.instance.getAll() {
             actionSheet.addAction(UIAlertAction(title: stop.getName(), style: UIAlertActionStyle.default) { (action) in
                 self.fromStop = stop
                 self.fromButton.setTitle(self.fromStop.getName(), for: .normal)
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
     
     @IBAction func selectTo(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: NSLocalizedString("destination_title", comment: ""), message: NSLocalizedString("destination_text", comment: ""), preferredStyle: UIAlertControllerStyle.actionSheet)
-        for stop in Stop.getAll() {
+        for stop in StopLoader.instance.getAll() {
             actionSheet.addAction(UIAlertAction(title: stop.getName(), style: UIAlertActionStyle.default) { (action) in
                 self.toStop = stop
                 self.toButton.setTitle(self.toStop.getName(), for: .normal)

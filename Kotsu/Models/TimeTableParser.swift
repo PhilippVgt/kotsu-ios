@@ -18,10 +18,10 @@ class TimeTableParser : NSObject {
     func setDelegate(delegate: ParserDelegate?) {}
     func parse(from: Stop, to: Stop, when: Date) {}
     
-    private static var universalParser : TimeTableParser = UniversalParser();
+    private static var universalParser : TimeTableParser = UniversalParser()
     
     public static func getParser(from: Stop, to: Stop, delegate: ParserDelegate) -> TimeTableParser {
-        universalParser.setDelegate(delegate: delegate);
-        return universalParser;
+        universalParser.setDelegate(delegate: delegate)
+        return universalParser
     }
 }

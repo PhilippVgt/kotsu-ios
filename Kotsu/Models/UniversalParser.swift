@@ -15,6 +15,8 @@ class UniversalParser : TimeTableParser {
     
     var selectedDate: Date?
     
+    var currentSession: URLSessionDataTask?
+    
     
     override func setDelegate(delegate: ParserDelegate?) {
         self.delegate = delegate
@@ -27,20 +29,31 @@ class UniversalParser : TimeTableParser {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let url = "http://mphsoft.hadar.uberspace.de/kotsu/departure/\(from.id)/\(to.id)/\(dateFormatter.string(from: when))"
         
-        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: {(data, response, error) in
+        if currentSession != nil {
+            currentSession?.cancel()
+            currentSession = nil
+        }
+        currentSession = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: {(data, response, error) in
+            if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
+                print("Request cancelled")
+                return
+            }
+            
             guard let data = data, error == nil else {
+                print("Failed to retrieve data")
                 self.delegate?.failure()
                 return
             }
             
             guard let items = try? JSONDecoder().decode([Item].self, from: data) else {
+                print("Failed to decode data")
                 self.delegate?.failure()
                 return
             }
             
             var departures: [Departure] = []
             for item in items {
-                guard let destination = Stop.getStop(id: item.terminal.code) else { continue }
+                guard let destination = StopLoader.instance.getStop(id: item.terminal.code) else { continue }
                 
                 var date: Date = Date(timeInterval: 0, since: self.selectedDate!)
                 var hour = item.hours
@@ -65,7 +78,8 @@ class UniversalParser : TimeTableParser {
             } else {
                 self.delegate?.failure()
             }
-        }).resume();
+        })
+        currentSession?.resume()
     }
     
     

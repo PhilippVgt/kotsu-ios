@@ -139,7 +139,7 @@ class DepartureTableViewController: UITableViewController, ParserDelegate {
         DispatchQueue.main.sync {
             tableView.reloadData()
             if refreshControl?.isRefreshing == true {
-                refreshControl?.endRefreshing();
+                refreshControl?.endRefreshing()
             }
         }
     }
