@@ -75,7 +75,9 @@ class ViewController: UIViewController {
     @IBAction func swap(_ sender: UIButton) {
         let from: Stop = self.fromStop
         fromStop = toStop
-        toStop = from
+        
+        let connections = StopLoader.instance.getConnections(from: fromStop)
+        toStop = connections.filter({$0.id == from.id}).count > 0 ? from : connections[0]
         
         fromButton.setTitle(fromStop.getName(), for: .normal)
         toButton.setTitle(toStop.getName(), for: .normal)
@@ -90,6 +92,12 @@ class ViewController: UIViewController {
                 self.fromStop = stop
                 self.fromButton.setTitle(self.fromStop.getName(), for: .normal)
                 
+                let connections = StopLoader.instance.getConnections(from: self.fromStop)
+                if connections.filter({$0.id == self.toStop.id}).count == 0 {
+                    self.toStop = connections[0]
+                    self.toButton.setTitle(self.toStop.getName(), for: .normal)
+                }
+                
                 self.departureViewController?.set(from: self.fromStop, to: self.toStop)
             })
         }
@@ -101,7 +109,7 @@ class ViewController: UIViewController {
     
     @IBAction func selectTo(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: NSLocalizedString("destination_title", comment: ""), message: NSLocalizedString("destination_text", comment: ""), preferredStyle: UIAlertControllerStyle.actionSheet)
-        for stop in StopLoader.instance.getAll() {
+        for stop in StopLoader.instance.getConnections(from: fromStop) {
             actionSheet.addAction(UIAlertAction(title: stop.getName(), style: UIAlertActionStyle.default) { (action) in
                 self.toStop = stop
                 self.toButton.setTitle(self.toStop.getName(), for: .normal)
