@@ -59,7 +59,7 @@ class StopLoader {
             } catch {}
         }
         
-        let stopURL = "http://mphsoft.hadar.uberspace.de/kotsu/stop"
+        let stopURL = "https://mphsoft.uber.space/api/kotsu/stop"
         URLSession.shared.dataTask(with: URL(string: stopURL)!, completionHandler: {(data, response, error) in
             guard let data = data, error == nil else { return }
             
@@ -78,7 +78,7 @@ class StopLoader {
             }
         }).resume()
         
-        let connectionURL = "http://mphsoft.hadar.uberspace.de/kotsu/connection"
+        let connectionURL = "https://mphsoft.uber.space/api/kotsu/connection"
         URLSession.shared.dataTask(with: URL(string: connectionURL)!, completionHandler: {(data, response, error) in
             guard let data = data, error == nil else { return }
             

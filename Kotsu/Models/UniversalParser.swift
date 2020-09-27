@@ -27,7 +27,7 @@ class UniversalParser : TimeTableParser {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let url = "http://mphsoft.hadar.uberspace.de/kotsu/departure/\(from.id)/\(to.id)/\(dateFormatter.string(from: when))"
+        let url = "https://mphsoft.uber.space/api/kotsu/departure/\(from.id)/\(to.id)/\(dateFormatter.string(from: when))"
         
         if currentSession != nil {
             currentSession?.cancel()
